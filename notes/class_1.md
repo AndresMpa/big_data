@@ -5,7 +5,7 @@ In the end you'll have 2 softwares/utilities
 
 Pre TO DO:
 
-- Do a NN (First task)
+- Do a NN (First task) -> Find a way to create plots efficiently
 - An analysis with big amount of data (Nothing to code here) -> *USE A BIG DATA SET I MEAN BIG 50k is enough*
 
 Big data is about 25TB, if you can storage it; that's not big data (Remember, this computer owns 1TB)
