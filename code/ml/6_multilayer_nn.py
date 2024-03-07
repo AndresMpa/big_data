@@ -48,3 +48,9 @@ To get the weights from NN
 print(input_layer.get_weights())
 print(hidden_layer.get_weights())
 print(output_layer.get_weights())
+
+'''
+Plotting loss
+'''
+plt.plot(history.history["loss"])
+plt.show()
