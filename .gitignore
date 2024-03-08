@@ -1,5 +1,6 @@
 # Custom
 *env
+*__pycache__/
 
 # Logs
 logs
