@@ -1,12 +1,13 @@
 import pandas as pd
 from typing import List
 
+
 def clear_data(dataset: pd.DataFrame, columns_to_drop: List[int] = [], *args: bool) -> pd.DataFrame:
     """Clear data from a dataset
 
     Args:
         dataset (DataFrame): Receive a pandas DataFrame
-        columns_to_drop (List[int]): A list of indexes of columns to remove from the dataset
+        columns_to_drop (List[int], optional): A list of indexes of columns to remove from the dataset. Defaults to []
 
     Returns:
         dataset: Same dataset without NaN or some columns when needed
