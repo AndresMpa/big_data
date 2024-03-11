@@ -8,7 +8,7 @@ def load_dataset(file: str, encoding: str = "latin-1") -> pd.DataFrame:
 
     Args:
         file (str): The dataset name
-        encoding (str): Encoding from the dataset file
+        encoding (str, optional): Encoding from the dataset file. Default to "latin-1"
 
     Returns:
         pd.DataFrame: A loaded file as a pandas dataFrame
