@@ -17,7 +17,6 @@ def correlation(timestamp: float) -> None:
         Aims to be research #1
 
     Args:
-        dataset (pd.DataFrame): A dataset as a pandas DataFrame
         timestamp (str): A simple id to track the test
     """
 
