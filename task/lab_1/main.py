@@ -1,10 +1,10 @@
 import time
 from util.env_vars import config
-from research.main import research_1
+from research.preliminary import correlation
 
 
 research = {
-    "1": research_1,
+    "1": correlation,
 }
 
 

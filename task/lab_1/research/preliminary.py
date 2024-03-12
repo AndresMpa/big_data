@@ -5,7 +5,7 @@ from analysis.main import get_correlation
 from analysis.plotting import heat, scatter
 
 
-def research_1(timestamp: float) -> None:
+def correlation(timestamp: float) -> None:
     """To analyze first set of hypothesis:
 
         - Correlation BPM and Streams
@@ -13,6 +13,8 @@ def research_1(timestamp: float) -> None:
         - Correlation Speechiness count and Streams
         - Correlation Danceability and Streams
         - Correlation Danceability count and Energy
+
+        Aims to be research #1
 
     Args:
         dataset (pd.DataFrame): A dataset as a pandas DataFrame
