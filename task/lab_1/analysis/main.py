@@ -15,4 +15,4 @@ def correlation(dataset: pd.DataFrame, normalization: List[int]) -> pd.DataFrame
         if normalization[index] == 3:
             dataset[column] = z_score(dataset, column)
 
-    return dataset
+    return dataset.corr()
