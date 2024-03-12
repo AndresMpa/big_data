@@ -7,10 +7,11 @@ from util.env_vars import config
 from util.dirs import check_path, create_dir, create_path
 
 
-def save_fig(file_name: str, plot_format: str = "png") -> None:
+def save_figure(figure: plt.Figure, file_name: str, plot_format: str = "png") -> None:
     """Save a image given a name
 
     Args:
+        figure (plt.Figure): Instance of figure.gcf()
         file_name (str): Name of the file to be created
         plot_format (str, optional): Format to image to be created. Defaults to "png"
     """
@@ -18,8 +19,7 @@ def save_fig(file_name: str, plot_format: str = "png") -> None:
         create_dir(config["save"])
 
     file_path = create_path(config["save"], f"{file_name}.{plot_format}")
-    plt.savefig(file_path)
-    plt.clf()
+    figure.savefig(file_path)
 
 
 def heat(dataset: pd.DataFrame, title: str = "Heat map", **kwargs: Any) -> None:
@@ -34,10 +34,13 @@ def heat(dataset: pd.DataFrame, title: str = "Heat map", **kwargs: Any) -> None:
 
     sns.heatmap(dataset, annot=True, cmap=color)
     plt.title(title)
-    plt.show()
 
     if "s" in kwargs or "save" in kwargs:
-        save_fig(title + id)
+        figure = plt.gcf()
+        save_figure(figure, f"{title} - {id}")
+
+    plt.show()
+    plt.close()
 
 
 def scatter(positions: List[pd.Series], title: str = "Scatter map", **kwargs: Any) -> None:
@@ -50,14 +53,17 @@ def scatter(positions: List[pd.Series], title: str = "Scatter map", **kwargs: An
 
     id = kwargs.get("id") or kwargs.get("identifier") or ""
     color = kwargs.get("c") or kwargs.get("color") or "#ff7f0e"
-    x_label = kwargs.get("xl") or kwargs.get("x_label") or ""
-    y_label = kwargs.get("yl") or kwargs.get("y_label") or ""
+    x_label = kwargs.get("x") or kwargs.get("x_label") or ""
+    y_label = kwargs.get("y") or kwargs.get("y_label") or ""
 
     plt.scatter(positions[0], positions[1], c=color)
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
+    plt.xlabel(x_label, fontsize=14)
+    plt.ylabel(y_label, fontsize=14)
     plt.title(title)
-    plt.show()
 
     if "s" in kwargs or "save" in kwargs:
-        save_fig(title + id)
+        figure = plt.gcf()
+        save_figure(figure, f"{title} - {id}")
+
+    plt.show()
+    plt.close()
