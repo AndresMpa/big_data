@@ -12,7 +12,7 @@ def simple_scaling(data: pd.DataFrame, target: str) -> pd.DataFrame:
         pd.DataFrame: The entire DataFrame with the normalization in <target>
     """
     data[target] = data[target] / data[target].max()
-    return data
+    return data[target]
 
 
 def min_max(data: pd.DataFrame, target: str) -> pd.DataFrame:
@@ -28,7 +28,7 @@ def min_max(data: pd.DataFrame, target: str) -> pd.DataFrame:
     data[target] = (data[target] - data[target].min()) / (
         data[target].max() - data[target].min()
     )
-    return data
+    return data[target]
 
 
 def z_score(data: pd.DataFrame, target: str) -> pd.DataFrame:
@@ -42,4 +42,4 @@ def z_score(data: pd.DataFrame, target: str) -> pd.DataFrame:
         pd.DataFrame: The entire DataFrame with the normalization in <target>
     """
     data[target] = (data[target] - data[target].mean()) / (data[target].std())
-    return data
+    return data[target]
