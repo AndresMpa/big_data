@@ -3,7 +3,6 @@ This is not the best but it pretty useful to achieve understanding
 '''
 
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 
@@ -46,7 +45,8 @@ new_data = np.array([
     [2.4485]
 ])
 
-plt.scatter(new_data, regression.predict(new_data), color="g", marker="^", s=100)
+plt.scatter(new_data, regression.predict(
+    new_data), color="g", marker="^", s=100)
 plt.scatter(dataset_a, dataset_b, color="blue")
 plt.plot(dataset_a, regression.predict(dataset_a), color="red", linewidth=3)
 plt.show()
