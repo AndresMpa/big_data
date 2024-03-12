@@ -35,17 +35,19 @@ Those characteristics are represent in a table as:
 | ------- | ------ | ------------ | ------ | ----------- |
 | Number  | Number | Float        | Float  | Float       |
 
-##### Data analysis (Hypothesis)
+##### Preliminary data analysis (Hypothesis)
 
 The most important characteristics for this analysis is going to be "Streams", streams represents the amount of reproductions on Spotify so, it makes sense to analyze in deep this metric, as a performance-like metric, the closes in relations characteristics I have found while reading the information from each column would be the following hypothesis:
 
 - There's a correlation between BPS and Streams
 - There's a correlation between Artist count and Streams
 - There's a correlation between Danceability count and Energy
-- There's a inverse correlation between Speechiness count and Streams
+- There's a correlation between Speechiness count and Streams
 - There's a correlation between Danceability and Streams
 
-Indeed, I'm a latin researcher so there most be some biases in those hypothesis, due to the region I live, but the idea is to analyze them
+> Note: Indeed, I'm a latin researcher so there most be some biases in those hypothesis, due to the region I live, but the idea is to analyze them
+
+Analyzing correlations most of hypothesis were refused by the correlation matrix, even so; there seems to be a correlation between 'Streams' and 'Speechiness', according to the following figure
 
 ##### Machine learning strategy
 
