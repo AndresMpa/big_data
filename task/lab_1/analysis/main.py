@@ -1,7 +1,8 @@
 import pandas as pd
 
 from typing import List
-from analysis.normalization import *
+from analysis.normalization import simple_scaling, min_max, z_score
+
 
 def correlation(dataset: pd.DataFrame, normalization: List[int]) -> pd.DataFrame:
     for index, column in enumerate(dataset):
