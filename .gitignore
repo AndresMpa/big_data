@@ -1,6 +1,7 @@
 # Custom
 *env
 *__pycache__/
+*plots/
 
 # Logs
 logs
