@@ -11,5 +11,6 @@ load_dotenv(env_file)
 
 config = {
     "datasets": os.environ.get("DATASET_DIR"),
-    "save": os.environ.get("SAVE_DIR")
+    "save": os.environ.get("SAVE_DIR"),
+    "stage": os.environ.get("STAGE"),
 }
