@@ -2,6 +2,7 @@ import pandas as pd
 
 from typing import List
 from analysis.normalization import simple_scaling, min_max, z_score
+from analysis.regression import linear_regression, test_regression
 
 
 def get_correlation(dataset: pd.DataFrame, normalization: List[int]) -> pd.DataFrame:
@@ -16,3 +17,13 @@ def get_correlation(dataset: pd.DataFrame, normalization: List[int]) -> pd.DataF
             dataset[column] = z_score(dataset, column)
 
     return dataset.corr()
+
+
+def get_regression(regression_type: str, data: pd.Series, target: pd.Series, **kwargs) -> None:
+    if regression_type == "linear":
+        regression, x_test, y_test = linear_regression(data, target)
+
+    if "test" in kwargs:
+        test_regression(regression, x_test, y_test)
+
+    return regression
