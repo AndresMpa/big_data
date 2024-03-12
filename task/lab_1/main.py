@@ -1,10 +1,12 @@
 import time
 from util.env_vars import config
 from research.preliminary import correlation
+from research.stream_speechiness import predict
 
 
 research = {
     "1": correlation,
+    "2": predict,
 }
 
 
