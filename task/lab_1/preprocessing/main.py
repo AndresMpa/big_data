@@ -1,9 +1,9 @@
 import pandas as pd
-from typing import List
+from typing import List, Any
 
 
 def clear_data(
-    dataset: pd.DataFrame, columns_to_drop: List[int] = [], *args: bool
+    dataset: pd.DataFrame, columns_to_drop: List[int] = [], *args: bool, **kwargs: Any
 ) -> pd.DataFrame:
     """Clear data from a dataset
 
@@ -14,9 +14,10 @@ def clear_data(
     Returns:
         dataset: Same dataset without NaN or some columns when needed
     """
-
-    # Just fixing 'streams' column (It's str by default)
-    dataset["streams"] = pd.to_numeric(dataset["streams"], errors="coerce")
+    no_numeric = kwargs.get("no_numeric") or kwargs.get("nn")
+    for column in no_numeric:
+        # Just fixing columns that are str by default
+        dataset[column] = pd.to_numeric(dataset[column], errors="coerce")
 
     dataset.drop(dataset.columns[columns_to_drop], axis=1, inplace=True)
 
