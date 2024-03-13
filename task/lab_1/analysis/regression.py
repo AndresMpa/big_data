@@ -76,19 +76,12 @@ def test_classifier(
     """
     prediction = classifier.predict(x_test)
 
-    # Calculate accuracy
     accuracy = accuracy_score(y_test, prediction)
     print(f"Accuracy: {accuracy:.2f}")
-
-    # Calculate precision
     precision = precision_score(y_test, prediction)
     print(f"Precision: {precision:.2f}")
-
-    # Calculate recall
     recall = recall_score(y_test, prediction)
     print(f"Recall: {recall:.2f}")
-
-    # Calculate F1 score
     f1 = f1_score(y_test, prediction)
     print(f"F1 Score: {f1:.2f}")
 
