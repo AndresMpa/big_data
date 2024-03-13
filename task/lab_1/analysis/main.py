@@ -19,7 +19,9 @@ def get_correlation(dataset: pd.DataFrame, normalization: List[int]) -> pd.DataF
     return dataset.corr()
 
 
-def get_regression(regression_type: str, data: pd.Series, target: pd.Series, **kwargs) -> None:
+def get_regression(
+    regression_type: str, data: pd.DataFrame, target: pd.Series, **kwargs
+) -> None:
     if regression_type == "linear":
         regression, x_test, y_test = linear_regression(data, target)
 
