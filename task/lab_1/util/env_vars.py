@@ -13,7 +13,6 @@ config = {
     "datasets": os.environ.get("DATASET_DIR"),
     "save": os.environ.get("SAVE_DIR"),
     "stage": os.environ.get("STAGE"),
-
     "train_size": float(os.environ.get("TRAIN_SIZE")),
     "test_size": float(os.environ.get("TEST_SIZE")),
 }

@@ -15,4 +15,4 @@ def load_dataset(file: str, encoding: str = "latin-1") -> pd.DataFrame:
     """
     path = config["datasets"]
     dataset = read_csv(f"{path}/{file}", encoding=encoding)
-    return dataset    
+    return dataset

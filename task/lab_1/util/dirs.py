@@ -14,7 +14,7 @@ def extract_file_name_data(file_name: str, prefix: str, suffix: str) -> str | No
     Returns:
         str or None: The extracted model name or None if not found
     """
-    pattern = rf'{re.escape(prefix)}([a-zA-Z0-9]+){re.escape(suffix)}'
+    pattern = rf"{re.escape(prefix)}([a-zA-Z0-9]+){re.escape(suffix)}"
     match = re.search(pattern, file_name)
 
     if match:
@@ -75,7 +75,7 @@ def check_path(path: str) -> bool:
     Returns:
         True is exist, False if not
     """
-    return (os.path.isdir(path))
+    return os.path.isdir(path)
 
 
 def create_path(path: str, filename: str) -> str:
@@ -101,7 +101,7 @@ def create_dir(path: str) -> None:
         path (str): Path to create
     """
     try:
-        if (check_path(path)):
+        if check_path(path):
             return
         else:
             dir_path = get_current_path(path)
