@@ -46,7 +46,7 @@ def correlation(timestamp: float) -> None:
         22,  # Liveness (%)
         # 23,  # Speechiness (%)
     ]
-    dataset = clear_data(dataset=dataset, columns_to_drop=unused)
+    dataset = clear_data(dataset=dataset, columns_to_drop=unused, nn=["streams"])
 
     correlation = get_correlation(dataset.copy(deep=True), [1, 1, 1, 1, 1, 1])
 

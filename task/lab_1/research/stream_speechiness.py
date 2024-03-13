@@ -42,7 +42,7 @@ def predict(timestamp: float) -> None:
         22,  # Liveness (%)
         # 23,  # Speechiness (%)
     ]
-    dataset = clear_data(dataset=dataset, columns_to_drop=unused)
+    dataset = clear_data(dataset=dataset, columns_to_drop=unused, nn=["streams"])
     features, target = get_features(dataset["speechiness_%"], dataset["streams"])
 
     linear_regression = get_regression(
@@ -56,4 +56,4 @@ def predict(timestamp: float) -> None:
         id=timestamp,
         x="Speechiness",
         y="Streams",
-   )
+    )
