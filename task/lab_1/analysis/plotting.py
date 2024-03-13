@@ -79,6 +79,15 @@ def plt_regression(
     color: List[str] = ["red", "blue"],
     **kwargs: Any,
 ) -> None:
+    """Plots a regression as a scatter plot with a simple plot
+
+    Args:
+        prediction (pd.DataFrame): Simple DataFrame from a regression like process
+        features (pd.DataFrame): Base DataFrame taken for prediction creation
+        target (pd.Series): A pd.Series of labels or targets
+        title (str, optional): Simple title to name the plot. Defaults to "Regression plot".
+        color (List[str], optional): 2 color for plots. Defaults to ["red", "blue"].
+    """
 
     id = kwargs.get("id") or kwargs.get("identifier") or ""
     x_label = kwargs.get("x") or kwargs.get("x_label") or ""
