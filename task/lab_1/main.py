@@ -2,11 +2,13 @@ import time
 from util.env_vars import config
 from research.preliminary import correlation
 from research.stream_speechiness import predict
+from research.deeper_understanding import deeper
 
 
 research = {
     "1": correlation,
     "2": predict,
+    "3": deeper,
 }
 
 
