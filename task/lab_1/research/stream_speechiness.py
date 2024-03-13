@@ -55,6 +55,6 @@ def predict(timestamp: float) -> None:
         features,
         target,
         id=timestamp,
-        x="Features",
-        y="Label",
-    )
+        x="Speechiness",
+        y="Streams",
+   )
