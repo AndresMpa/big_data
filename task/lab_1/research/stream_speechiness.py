@@ -16,25 +16,24 @@ def predict(timestamp: float) -> None:
     """
 
     dataset = load_dataset("Popular_Spotify_Songs.csv")
-
     unused = [
-        0,  # Track name
-        1,  # Artist(s) name
+        0,  # Track name (str)
+        1,  # Artist(s) name (str)
         2,  # Artist count
         3,  # Released year
         4,  # Released month
         5,  # Released day
         6,  # In Spotify playlist
         7,  # In Spotify charts
-        # 8,  # Streams
+        # 8,  # Streams (str)
         9,  # In apple playlist
         10,  # In apple charts
         11,  # In Deezer playlists
         12,  # In Deezer charts
         13,  # In Shazam charts
         14,  # BPM
-        15,  # Key
-        16,  # Mode
+        15,  # Key (str)
+        16,  # Mode (str)
         17,  # Danceability (%)
         18,  # Valence (%)
         19,  # Energy (%)
