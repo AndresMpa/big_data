@@ -43,7 +43,9 @@ def heat(dataset: pd.DataFrame, title: str = "Heat map", **kwargs: Any) -> None:
     plt.close()
 
 
-def scatter(positions: List[pd.Series], title: str = "Scatter map", **kwargs: Any) -> None:
+def scatter(
+    positions: List[pd.Series], title: str = "Scatter map", **kwargs: Any
+) -> None:
     """Creates a scatter plot given an array of series
 
     Args:
@@ -60,6 +62,34 @@ def scatter(positions: List[pd.Series], title: str = "Scatter map", **kwargs: An
     plt.xlabel(x_label, fontsize=14)
     plt.ylabel(y_label, fontsize=14)
     plt.title(title)
+
+    if "s" in kwargs or "save" in kwargs:
+        figure = plt.gcf()
+        save_figure(figure, f"{title} - {id}")
+
+    plt.show()
+    plt.close()
+
+
+def plt_regression(
+    prediction: pd.DataFrame,
+    features: pd.DataFrame,
+    target: pd.Series,
+    title: str = "Regression plot",
+    color: List[str] = ["red", "blue"],
+    **kwargs: Any,
+) -> None:
+
+    id = kwargs.get("id") or kwargs.get("identifier") or ""
+    x_label = kwargs.get("x") or kwargs.get("x_label") or ""
+    y_label = kwargs.get("y") or kwargs.get("y_label") or ""
+
+    plt.scatter(features, target, c=color[0], label="Current")
+    plt.plot(features, prediction, c=color[1], label="Prediction")
+    plt.xlabel(x_label, fontsize=14)
+    plt.ylabel(y_label, fontsize=14)
+    plt.title(title)
+    plt.legend()
 
     if "s" in kwargs or "save" in kwargs:
         figure = plt.gcf()
