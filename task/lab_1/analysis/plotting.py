@@ -49,8 +49,8 @@ def scatter(
     """Creates a scatter plot given an array of series
 
     Args:
-        positions (List[pd.Serries]): Positions for scatter plot (X, Y)
-        title (str, optional): Title to show in the plot. Defaults to "Heat map".
+        positions (List[pd.Series]): Positions for scatter plot (X, Y)
+        title (str, optional): Title to show in the plot. Defaults to "Scatter map".
     """
 
     id = kwargs.get("id") or kwargs.get("identifier") or ""
@@ -99,6 +99,34 @@ def plt_regression(
     plt.ylabel(y_label, fontsize=14)
     plt.title(title)
     plt.legend()
+
+    if "s" in kwargs or "save" in kwargs:
+        figure = plt.gcf()
+        save_figure(figure, f"{title} - {id}")
+
+    plt.show()
+    plt.close()
+
+
+def plot(
+    positions: List[pd.DataFrame], title: str = "Simple plot map", **kwargs: Any
+) -> None:
+    """Creates a simple plot given an array of series
+
+    Args:
+        positions (List[pd.DataFrame]): Positions for plot (X, Y)
+        title (str, optional): Title to show in the plot. Defaults to "Simple plot map".
+    """
+
+    id = kwargs.get("id") or kwargs.get("identifier") or ""
+    color = kwargs.get("c") or kwargs.get("color") or "#ff7f0e"
+    x_label = kwargs.get("x") or kwargs.get("x_label") or ""
+    y_label = kwargs.get("y") or kwargs.get("y_label") or ""
+
+    plt.plot(positions[0], positions[1], c=color)
+    plt.xlabel(x_label, fontsize=14)
+    plt.ylabel(y_label, fontsize=14)
+    plt.title(title)
 
     if "s" in kwargs or "save" in kwargs:
         figure = plt.gcf()
