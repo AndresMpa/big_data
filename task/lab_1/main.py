@@ -3,12 +3,14 @@ from util.env_vars import config
 from research.preliminary import correlation
 from research.stream_speechiness import predict
 from research.deeper_understanding import deeper
+from research.nn_analysis import nn_analysis
 
 
 research = {
     "1": correlation,
     "2": predict,
     "3": deeper,
+    "4": nn_analysis,
 }
 
 
