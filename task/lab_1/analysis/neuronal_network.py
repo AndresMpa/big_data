@@ -12,7 +12,7 @@ from tensorflow.keras.layers import Dense, Dropout
 from sklearn.model_selection import train_test_split
 
 
-ACTIVATION_FUNCTIONS = {
+ACTIVATION_FUNCTIONS = [
     "relu",
     "sigmoid",
     "softmax",
@@ -31,18 +31,18 @@ ACTIVATION_FUNCTIONS = {
     "linear",
     "mish",
     "log_softmax",
-}
+]
 
 
 def create_nn(
-    input_layer: List[int, int],
+    input_layer: int,
     hidden_layer: List[List[Union[int, str, Optional[int]]]],
     output_layer: int,
 ) -> Sequential:
     """Creates any simple neural network given a architecture as a list
 
     Args:
-        input_layer (List[int, int]): Defines NN inputs as [units, input_shape]
+        input_layer (int): Defines NN inputs
         hidden_layer (List[List[Union[int, str, Optional[int]]]]): Defines hidden layers of NN as [[units, activation_function, dropout (Optionally)]]. The activation_function must be any of the following functions:
         "relu", "sigmoid", "softmax", "softplus","softsign", "tanh", "selu", "elu", "exponential", "leaky_relu", "relu6", "silu", "hard_silu", "gelu", "hard_sigmoid", "linear", "mish" or "log_softmax"
         output_layer (int): Define the output layer
@@ -52,10 +52,10 @@ def create_nn(
     """
 
     nn_arch = []
-    nn_arch.append(Dense(units=input_layer[0], input_shape=input_layer[1]))
+    nn_arch.append(Dense(units=input_layer[0]))
 
     for layer in hidden_layer:
-        if hidden_layer[1] not in ACTIVATION_FUNCTIONS:
+        if hidden_layer[1][1] not in ACTIVATION_FUNCTIONS:
             raise ValueError(
                 f"Invalid activation: {hidden_layer[1]}. Valid activations are: {', '.join(ACTIVATION_FUNCTIONS)}"
             )
@@ -75,7 +75,7 @@ def create_nn(
 
 def train_nn(
     neuronal_network: Sequential, data: pd.DataFrame, target: pd.Series, **kwargs: Any
-) -> Tuple[Sequential, list, list] | Tuple[Sequential, list, list, list, list]:
+) -> Tuple[Sequential, list, list, list, list]:
     """Simple Linear Regression model
 
     Args:
@@ -98,11 +98,8 @@ def train_nn(
         random_state=42,
     )
 
-    epochs = kwargs.get("epochs") or kwargs.get("e") or 1000
+    epochs = kwargs.get("epochs") or 1000
 
-    neuronal_network.fit(X_train, y_train, epochs=epochs, verbose=True)
+    history = neuronal_network.fit(X_train, y_train, epochs=epochs, verbose=config["verbose"])
 
-    if "f" in kwargs or "full" in kwargs:
-        return neuronal_network, X_test, y_test, X_train, y_train
-    else:
-        return neuronal_network, X_test, y_test
+    return neuronal_network, history, X_test, y_test, X_train, y_train
