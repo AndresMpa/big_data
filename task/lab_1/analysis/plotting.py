@@ -39,8 +39,9 @@ def heat(dataset: pd.DataFrame, title: str = "Heat map", **kwargs: Any) -> None:
         figure = plt.gcf()
         save_figure(figure, f"{title} - {id}")
 
-    plt.show()
-    plt.close()
+    if config["show_plot"]:
+        plt.show()
+        plt.close()
 
 
 def scatter(
@@ -67,8 +68,9 @@ def scatter(
         figure = plt.gcf()
         save_figure(figure, f"{title} - {id}")
 
-    plt.show()
-    plt.close()
+    if config["show_plot"]:
+        plt.show()
+        plt.close()
 
 
 def plt_regression(
@@ -104,8 +106,9 @@ def plt_regression(
         figure = plt.gcf()
         save_figure(figure, f"{title} - {id}")
 
-    plt.show()
-    plt.close()
+    if config["show_plot"]:
+        plt.show()
+        plt.close()
 
 
 def plot(
@@ -123,7 +126,7 @@ def plot(
     x_label = kwargs.get("x") or kwargs.get("x_label") or ""
     y_label = kwargs.get("y") or kwargs.get("y_label") or ""
 
-    plt.plot(positions[0], positions[1], c=color)
+    plt.plot(positions, c=color)
     plt.xlabel(x_label, fontsize=14)
     plt.ylabel(y_label, fontsize=14)
     plt.title(title)
@@ -132,5 +135,62 @@ def plot(
         figure = plt.gcf()
         save_figure(figure, f"{title} - {id}")
 
-    plt.show()
-    plt.close()
+    if config["show_plot"]:
+        plt.show()
+        plt.close()
+
+
+def residual(
+    positions: List[pd.Series], title: str = "Simple residual plot", **kwargs: Any
+) -> None:
+    """Creates a residual plot given an array of series
+
+    Args:
+        positions (List[pd.Series]): Positions for residual plot (X, Y)
+        title (str, optional): Title to show in the plot. Defaults to "Simple residual plot".
+    """
+
+    id = kwargs.get("id") or kwargs.get("identifier") or ""
+    color = kwargs.get("c") or kwargs.get("color") or "#ff7f0e"
+    x_label = kwargs.get("x") or kwargs.get("x_label") or ""
+    y_label = kwargs.get("y") or kwargs.get("y_label") or ""
+
+    plt.scatter(positions[0], positions[1], c=color)
+    plt.axhline(y=0, color="r", linestyle="-")
+    plt.xlabel(x_label, fontsize=14)
+    plt.ylabel(y_label, fontsize=14)
+    plt.title(title)
+
+    if "s" in kwargs or "save" in kwargs:
+        figure = plt.gcf()
+        save_figure(figure, f"{title} - {id}")
+
+    if config["show_plot"]:
+        plt.show()
+        plt.close()
+
+
+def histogram(data: pd.Series, title: str = "Histogram plot", **kwargs) -> None:
+    """Creates a histogram as a plot
+
+    Args:
+        data (pd.Series): Data for histogram
+        title (str, optional): Title to show in the plot. Defaults to "Histogram plot".
+    """
+
+    id = kwargs.get("id") or kwargs.get("identifier") or ""
+    x_label = kwargs.get("x") or kwargs.get("x_label") or ""
+    y_label = kwargs.get("y") or kwargs.get("y_label") or ""
+
+    sns.histplot(data, kde=True)
+    plt.xlabel(x_label, fontsize=14)
+    plt.ylabel(y_label, fontsize=14)
+    plt.title(title)
+
+    if "s" in kwargs or "save" in kwargs:
+        figure = plt.gcf()
+        save_figure(figure, f"{title} - {id}")
+
+    if config["show_plot"]:
+        plt.show()
+        plt.close()
