@@ -127,7 +127,7 @@ def nn_analysis(timestamp: float) -> None:
 
         residual(
             [y_pred, residuals],
-            title="Actual vs Predicted values",
+            title="Predicted values vs Residuals",
             x="Predicted value",
             y="Residual value",
             id=timestamp,
