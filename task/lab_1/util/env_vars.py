@@ -15,4 +15,6 @@ config = {
     "stage": os.environ.get("STAGE"),
     "train_size": float(os.environ.get("TRAIN_SIZE")),
     "test_size": float(os.environ.get("TEST_SIZE")),
+    "verbose": os.environ.get("VERBOSE") == "1",
+    "show_plot": os.environ.get("SHOW_PLOT") == "1",
 }
