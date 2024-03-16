@@ -41,7 +41,8 @@ def heat(dataset: pd.DataFrame, title: str = "Heat map", **kwargs: Any) -> None:
 
     if config["show_plot"]:
         plt.show()
-        plt.close()
+
+    plt.close()
 
 
 def scatter(
@@ -70,7 +71,8 @@ def scatter(
 
     if config["show_plot"]:
         plt.show()
-        plt.close()
+
+    plt.close()
 
 
 def plt_regression(
@@ -108,7 +110,8 @@ def plt_regression(
 
     if config["show_plot"]:
         plt.show()
-        plt.close()
+
+    plt.close()
 
 
 def plot(
@@ -137,7 +140,8 @@ def plot(
 
     if config["show_plot"]:
         plt.show()
-        plt.close()
+
+    plt.close()
 
 
 def residual(
@@ -167,7 +171,8 @@ def residual(
 
     if config["show_plot"]:
         plt.show()
-        plt.close()
+
+    plt.close()
 
 
 def histogram(data: pd.Series, title: str = "Histogram plot", **kwargs) -> None:
@@ -193,4 +198,5 @@ def histogram(data: pd.Series, title: str = "Histogram plot", **kwargs) -> None:
 
     if config["show_plot"]:
         plt.show()
-        plt.close()
+
+    plt.close()
