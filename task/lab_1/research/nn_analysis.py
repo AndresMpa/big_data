@@ -101,7 +101,6 @@ def nn_analysis(timestamp: str) -> None:
     ]
 
     for nn in architectures:
-        timestamp = f"{timestamp} - {nn['epochs']}"
         neuronal_network, train_log, x_test, y_test, _, _ = get_nn(
             nn["input"], nn["hidden"], nn["output"], narrows, goal, epochs=nn["epochs"]
         )
@@ -109,7 +108,7 @@ def nn_analysis(timestamp: str) -> None:
         plot(
             train_log.history["loss"],
             title=f"Lost through {nn['epochs']} epochs",
-            id=timestamp,
+            id=f"{timestamp} - {nn['epochs']}",
             s=True,
         )
         test_regression(neuronal_network, x_test=x_test, y_test=y_test)
@@ -122,7 +121,7 @@ def nn_analysis(timestamp: str) -> None:
             title="Actual vs Predicted values",
             x="Actual value",
             y="Predicted value",
-            id=timestamp,
+            id=f"{timestamp} - {nn['epochs']}",
             s=True,
         )
 
@@ -131,7 +130,7 @@ def nn_analysis(timestamp: str) -> None:
             title="Predicted values vs Residuals",
             x="Predicted value",
             y="Residual value",
-            id=timestamp,
+            id=f"{timestamp} - {nn['epochs']}",
             s=True,
         )
 
@@ -140,6 +139,6 @@ def nn_analysis(timestamp: str) -> None:
             title="Residuals histogram",
             x="Residuals",
             y="Frequency",
-            id=timestamp,
+            id=f"{timestamp} - {nn['epochs']}",
             s=True,
         )
