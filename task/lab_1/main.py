@@ -20,7 +20,7 @@ def select_stage(stage):
 
 if __name__ == '__main__':
     # To track data
-    timestamp = time.time()
+    timestamp = str(time.time())
 
     research = select_stage(config["stage"])
 
