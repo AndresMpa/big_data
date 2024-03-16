@@ -5,7 +5,7 @@ from analysis.plotting import plot, scatter, residual, histogram
 from analysis.regression import test_regression
 
 
-def nn_analysis(timestamp: float) -> None:
+def nn_analysis(timestamp: str) -> None:
     """To look for some relations on the dataset
 
     Args:
@@ -101,6 +101,7 @@ def nn_analysis(timestamp: float) -> None:
     ]
 
     for nn in architectures:
+        timestamp = f"{timestamp} - {nn['epochs']}"
         neuronal_network, train_log, x_test, y_test, _, _ = get_nn(
             nn["input"], nn["hidden"], nn["output"], narrows, goal, epochs=nn["epochs"]
         )

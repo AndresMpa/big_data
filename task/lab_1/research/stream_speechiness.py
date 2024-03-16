@@ -4,7 +4,7 @@ from analysis.plotting import plt_regression
 from analysis.main import get_regression
 
 
-def predict(timestamp: float) -> None:
+def predict(timestamp: str) -> None:
     """A deep analysis of hypothesis "Correlation Speechiness count and
         Streams" to achieve a better understanding of that correlation, using
         a linear regression

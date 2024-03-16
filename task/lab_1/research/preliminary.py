@@ -4,7 +4,7 @@ from analysis.main import get_correlation
 from analysis.plotting import heat, scatter
 
 
-def correlation(timestamp: float) -> None:
+def correlation(timestamp: str) -> None:
     """To analyze first set of hypothesis:
 
         - Correlation BPM and Streams

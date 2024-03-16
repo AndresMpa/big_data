@@ -4,7 +4,7 @@ from analysis.main import get_correlation
 from analysis.plotting import heat, scatter
 
 
-def deeper(timestamp: float) -> None:
+def deeper(timestamp: str) -> None:
     """To look for some relations on the dataset
 
     Args:
