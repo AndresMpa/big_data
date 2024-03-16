@@ -53,7 +53,7 @@ def predict(timestamp: str) -> None:
         linear_regression.predict(features),
         features,
         target,
-        id=timestamp,
+        id=f"stream_speechiness - {timestamp}",
         x="Speechiness",
         y="Streams",
     )

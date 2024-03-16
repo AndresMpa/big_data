@@ -136,7 +136,7 @@ def plot(
 
     if "s" in kwargs or "save" in kwargs:
         figure = plt.gcf()
-        save_figure(figure, f"{title} - {id}")
+        save_figure(figure, f"{id} - {title}")
 
     if config["show_plot"]:
         plt.show()

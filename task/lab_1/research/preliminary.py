@@ -55,7 +55,7 @@ def correlation(timestamp: str) -> None:
     scatter(
         [dataset["bpm"], dataset["streams"]],
         "Streams vs BPM",
-        id=f"{timestamp}",
+        id=f"correlation - {timestamp}",
         x="BPM",
         y="Streams",
         s=True,
@@ -63,7 +63,7 @@ def correlation(timestamp: str) -> None:
     scatter(
         [dataset["artist_count"], dataset["streams"]],
         "Streams vs Artiste count",
-        id=f"{timestamp}",
+        id=f"correlation - {timestamp}",
         x="Artist count",
         y="Streams",
         s=True,
@@ -71,7 +71,7 @@ def correlation(timestamp: str) -> None:
     scatter(
         [dataset["speechiness_%"], dataset["streams"]],
         "Streams vs Speechiness (%)",
-        id=f"{timestamp}",
+        id=f"correlation - {timestamp}",
         x="Speechiness",
         y="Streams",
         s=True,
@@ -79,7 +79,7 @@ def correlation(timestamp: str) -> None:
     scatter(
         [dataset["danceability_%"], dataset["streams"]],
         "Streams vs Danceability (%)",
-        id=f"{timestamp}",
+        id=f"correlation - {timestamp}",
         x="Danceability",
         y="Streams",
         s=True,
@@ -87,7 +87,7 @@ def correlation(timestamp: str) -> None:
     scatter(
         [dataset["danceability_%"], dataset["energy_%"]],
         "Energy (%) vs Danceability (%)",
-        id=f"{timestamp}",
+        id=f"correlation - {timestamp}",
         x="Danceability",
         y="Energy",
         s=True,

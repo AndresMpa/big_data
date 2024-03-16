@@ -76,7 +76,7 @@ def deeper(timestamp: str) -> None:
     heat(
         correlation,
         title="Correlation heat map for all variables",
-        id=f"{timestamp}",
+        id=f"deeper - {timestamp}",
         s=True,
     )
 
@@ -85,7 +85,7 @@ def deeper(timestamp: str) -> None:
         scatter(
             [dataset[column], dataset["streams"]],
             f"Streams vs {label_name}",
-            id=f"{timestamp}",
+            id=f"deeper - {timestamp}",
             x=f"{label_name}",
             y="Streams",
             s=True,

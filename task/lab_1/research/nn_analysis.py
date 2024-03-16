@@ -108,7 +108,7 @@ def nn_analysis(timestamp: str) -> None:
         plot(
             train_log.history["loss"],
             title=f"Lost through {nn['epochs']} epochs",
-            id=f"{timestamp} - {nn['epochs']}",
+            id=f"nn_analysis - {nn['epochs']} {timestamp}",
             s=True,
         )
         test_regression(neuronal_network, x_test=x_test, y_test=y_test)
@@ -121,7 +121,7 @@ def nn_analysis(timestamp: str) -> None:
             title="Actual vs Predicted values",
             x="Actual value",
             y="Predicted value",
-            id=f"{timestamp} - {nn['epochs']}",
+            id=f"nn_analysis - {nn['epochs']} {timestamp}",
             s=True,
         )
 
@@ -130,7 +130,7 @@ def nn_analysis(timestamp: str) -> None:
             title="Predicted values vs Residuals",
             x="Predicted value",
             y="Residual value",
-            id=f"{timestamp} - {nn['epochs']}",
+            id=f"nn_analysis - {nn['epochs']} {timestamp}",
             s=True,
         )
 
@@ -139,6 +139,6 @@ def nn_analysis(timestamp: str) -> None:
             title="Residuals histogram",
             x="Residuals",
             y="Frequency",
-            id=f"{timestamp} - {nn['epochs']}",
+            id=f"nn_analysis - {nn['epochs']} {timestamp}",
             s=True,
         )
