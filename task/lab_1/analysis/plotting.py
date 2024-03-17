@@ -35,6 +35,8 @@ def heat(dataset: pd.DataFrame, title: str = "Heat map", **kwargs: Any) -> None:
     sns.heatmap(dataset, annot=True, cmap=color)
     plt.title(title)
 
+    plt.tight_layout()
+
     if "s" in kwargs or "save" in kwargs:
         figure = plt.gcf()
         save_figure(figure, f"{id} - {title}")
