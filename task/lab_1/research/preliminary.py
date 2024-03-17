@@ -50,7 +50,7 @@ def correlation(timestamp: str) -> None:
 
     correlation = get_correlation(dataset.copy(deep=True), [1, 1, 1, 1, 1, 1])
 
-    heat(correlation, title="Correlation heat map", id=f"{timestamp}", s=True)
+    heat(correlation, title="Correlation heat map", id=f"correlation - {timestamp}", s=True)
 
     scatter(
         [dataset["bpm"], dataset["streams"]],

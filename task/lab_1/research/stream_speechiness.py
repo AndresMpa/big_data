@@ -56,4 +56,5 @@ def predict(timestamp: str) -> None:
         id=f"stream_speechiness - {timestamp}",
         x="Speechiness",
         y="Streams",
+        s=True,
     )
