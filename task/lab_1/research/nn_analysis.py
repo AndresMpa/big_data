@@ -50,53 +50,92 @@ def nn_analysis(timestamp: str) -> None:
     narrows = dataset.drop("streams", axis=1)
 
     architectures = [
+        # linear - 16 x 16 x 16
+        {
+            "input": [16, 8],
+            "hidden": [[16, "linear", 0.3], [16, "linear", 0.3]],
+            "output": 1,
+            "epochs": 5,
+            "arch": "linear - 16 x 16 x 16",
+        },
+        {
+            "input": [16, 8],
+            "hidden": [[16, "linear", 0.3], [16, "linear", 0.3]],
+            "output": 1,
+            "epochs": 1_000,
+            "arch": "linear - 16 x 16 x 16",
+        },
+        {
+            "input": [16, 8],
+            "hidden": [[16, "linear", 0.3], [16, "linear", 0.2]],
+            "output": 1,
+            "epochs": 10_000,
+            "arch": "linear - 16 x 16 x 16",
+        },
+        {
+            "input": [16, 8],
+            "hidden": [[16, "linear", 0.2], [16, "linear", 0.1]],
+            "output": 1,
+            "epochs": 100_000,
+            "arch": "linear - 16 x 16 x 16",
+        },
+        # ReLu - 16 x 16 x 16
+        {
+            "input": [16, 8],
+            "hidden": [[16, "relu", 0.3], [16, "relu", 0.3]],
+            "output": 1,
+            "epochs": 5,
+            "arch": "relu - 16 x 16 x 16",
+        },
+        {
+            "input": [16, 8],
+            "hidden": [[16, "relu", 0.3], [16, "relu", 0.3]],
+            "output": 1,
+            "epochs": 1_000,
+            "arch": "relu - 16 x 16 x 16",
+        },
+        {
+            "input": [16, 8],
+            "hidden": [[16, "relu", 0.3], [16, "relu", 0.2]],
+            "output": 1,
+            "epochs": 10_000,
+            "arch": "relu - 16 x 16 x 16",
+        },
+        {
+            "input": [16, 8],
+            "hidden": [[16, "relu", 0.2], [16, "relu", 0.1]],
+            "output": 1,
+            "epochs": 100_000,
+            "arch": "relu - 16 x 16 x 16",
+        },
+        # mish - 16 x 16 x 16
         {
             "input": [16, 8],
             "hidden": [[16, "mish", 0.3], [16, "mish", 0.3]],
             "output": 1,
             "epochs": 5,
-        },
-        {
-            "input": [16, 8],
-            "hidden": [[16, "mish", 0.3], [16, "mish", 0.3]],
-            "output": 1,
-            "epochs": 500,
+            "arch": "mish - 16 x 16 x 16",
         },
         {
             "input": [16, 8],
             "hidden": [[16, "mish", 0.3], [16, "mish", 0.3]],
             "output": 1,
             "epochs": 1_000,
+            "arch": "mish - 16 x 16 x 16",
         },
         {
             "input": [16, 8],
-            "hidden": [[16, "mish", 0.3], [16, "mish", 0.3]],
+            "hidden": [[16, "mish", 0.3], [16, "mish", 0.2]],
             "output": 1,
             "epochs": 10_000,
+            "arch": "mish - 16 x 16 x 16",
         },
         {
             "input": [16, 8],
-            "hidden": [[16, "mish", 0.3], [16, "mish", 0.3]],
+            "hidden": [[16, "mish", 0.2], [16, "mish", 0.1]],
             "output": 1,
             "epochs": 100_000,
-        },
-        {
-            "input": [16, 8],
-            "hidden": [[16, "mish", 0.3], [16, "mish", 0.3]],
-            "output": 1,
-            "epochs": 1_000_000,
-        },
-        {
-            "input": [16, 8],
-            "hidden": [[16, "mish", 0.3], [16, "mish", 0.3]],
-            "output": 1,
-            "epochs": 10_000_000,
-        },
-        {
-            "input": [16, 8],
-            "hidden": [[16, "mish", 0.3], [16, "mish", 0.3]],
-            "output": 1,
-            "epochs": 100_000_000,
+            "arch": "mish - 16 x 16 x 16",
         },
     ]
 
@@ -107,11 +146,14 @@ def nn_analysis(timestamp: str) -> None:
 
         plot(
             train_log.history["loss"],
-            title=f"Lost through {nn['epochs']} epochs",
-            id=f"nn_analysis - {nn['epochs']} {timestamp}",
+            title=f"Loss through {nn['epochs']} epochs",
+            id=f"nn_analysis - {nn['arch']} {nn['epochs']} {timestamp}",
             s=True,
         )
-        test_regression(neuronal_network, x_test=x_test, y_test=y_test)
+        try:
+            test_regression(neuronal_network, x_test=x_test, y_test=y_test)
+        except:
+            print("Error while testing")
 
         y_pred = neuronal_network.predict(x_test)
         residuals = y_test.values - y_pred.flatten()
@@ -121,7 +163,7 @@ def nn_analysis(timestamp: str) -> None:
             title="Actual vs Predicted values",
             x="Actual value",
             y="Predicted value",
-            id=f"nn_analysis - {nn['epochs']} {timestamp}",
+            id=f"nn_analysis - {nn['arch']} {nn['epochs']} {timestamp}",
             s=True,
         )
 
@@ -130,7 +172,7 @@ def nn_analysis(timestamp: str) -> None:
             title="Predicted values vs Residuals",
             x="Predicted value",
             y="Residual value",
-            id=f"nn_analysis - {nn['epochs']} {timestamp}",
+            id=f"nn_analysis - {nn['arch']} {nn['epochs']} {timestamp}",
             s=True,
         )
 
@@ -139,6 +181,6 @@ def nn_analysis(timestamp: str) -> None:
             title="Residuals histogram",
             x="Residuals",
             y="Frequency",
-            id=f"nn_analysis - {nn['epochs']} {timestamp}",
+            id=f"nn_analysis - {nn['arch']} {nn['epochs']} {timestamp}",
             s=True,
         )
