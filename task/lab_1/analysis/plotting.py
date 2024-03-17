@@ -37,7 +37,7 @@ def heat(dataset: pd.DataFrame, title: str = "Heat map", **kwargs: Any) -> None:
 
     if "s" in kwargs or "save" in kwargs:
         figure = plt.gcf()
-        save_figure(figure, f"{title} - {id}")
+        save_figure(figure, f"{id} - {title}")
 
     if config["show_plot"]:
         plt.show()
@@ -67,7 +67,7 @@ def scatter(
 
     if "s" in kwargs or "save" in kwargs:
         figure = plt.gcf()
-        save_figure(figure, f"{title} - {id}")
+        save_figure(figure, f"{id} - {title}")
 
     if config["show_plot"]:
         plt.show()
@@ -106,7 +106,7 @@ def plt_regression(
 
     if "s" in kwargs or "save" in kwargs:
         figure = plt.gcf()
-        save_figure(figure, f"{title} - {id}")
+        save_figure(figure, f"{id} - {title}")
 
     if config["show_plot"]:
         plt.show()
@@ -167,7 +167,7 @@ def residual(
 
     if "s" in kwargs or "save" in kwargs:
         figure = plt.gcf()
-        save_figure(figure, f"{title} - {id}")
+        save_figure(figure, f"{id} - {title}")
 
     if config["show_plot"]:
         plt.show()
@@ -194,7 +194,7 @@ def histogram(data: pd.Series, title: str = "Histogram plot", **kwargs) -> None:
 
     if "s" in kwargs or "save" in kwargs:
         figure = plt.gcf()
-        save_figure(figure, f"{title} - {id}")
+        save_figure(figure, f"{id} - {title}")
 
     if config["show_plot"]:
         plt.show()
