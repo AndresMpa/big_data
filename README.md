@@ -1,3 +1,3 @@
-# Big data.
+# Big data
 
 Notes about big data
