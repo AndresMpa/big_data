@@ -4,8 +4,8 @@ Para la evaluación final del uso, es necesario realizar una análisis completo 
 
 1. Seleccionar una base de datos de 1 GB ó 1,5 GB. La base de datos debe tener suficientes variables, con el fin de realizar un análisis detallado de la misma. El tema es elección del estudiante.
 2. Si el estudiante tiene dificultades para trabajar con una base de datos tan grande en su maquina persona, puede al menos trabajar una base de tamaño 500 MB a 800 MB,.
-2. El estudiante debe realizar un análisis de los datos utilizando Hadoop o Spark utilizando los clusters configurados en el curso.
-3.  Para demostrar que la configuración es correcta y se realizo el montaje correctamente en java o Python, utilizando como base el ejemplo en clase, el estudiante debe cargar en este espacio un informe donde muestre:
+3. El estudiante debe realizar un análisis de los datos utilizando Hadoop o Spark utilizando los clusters configurados en el curso.
+4.  Para demostrar que la configuración es correcta y se realizo el montaje correctamente en java o Python, utilizando como base el ejemplo en clase, el estudiante debe cargar en este espacio un informe donde muestre:
     
     - Introducción al problema seleccionado
     - Características de la maquina local (Memoria RAM, Memoria en Disco, Porcesadores, etc.)
