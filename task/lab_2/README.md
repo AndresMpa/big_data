@@ -23,6 +23,11 @@
 
 ### Database modifications
 
+Database options:
+
+- [Anime Dataset 2023](https://www.kaggle.com/datasets/dbdmobile/myanimelist-dataset?select=final_animedataset.csv)
+- [Images of mango leaves](https://www.kaggle.com/datasets/meetnagadia/images-of-mango-leaves)
+
 ### Machine learning strategy
 
 ## Results
