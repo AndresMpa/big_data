@@ -15,25 +15,20 @@ Task constrains can be find at <a href="./task.md">task.md</a>
 
 ## Problem justification
 
-## Analysis strategy
+### Analysis strategy
 
-## Procedure
+### Procedure & Implementation
 
-## Implementation
-
-### Database modifications
-
-Database options:
+#### Database modifications
 
 - [Anime Dataset 2023](https://www.kaggle.com/datasets/dbdmobile/myanimelist-dataset?select=final_animedataset.csv)
-- [Images of mango leaves](https://www.kaggle.com/datasets/meetnagadia/images-of-mango-leaves)
 
-### Machine learning strategy
+# ### Machine learning strategy
 
 ## Results
 
 ### Hadoop / Spark
 
-### Machine learning strategy
+### Machine learning output 
 
 ## Conclusions
