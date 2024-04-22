@@ -23,3 +23,5 @@ pip install -r requirements.txt
 An exploratory research about [this dataset](https://www.kaggle.com/datasets/arnavvvvv/spotify-music/discussion) that contains the top songs on Spotify.
 
 ### Laboratory #2
+
+An exploratory research about [Anime list 2023]() dataset
