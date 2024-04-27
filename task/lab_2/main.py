@@ -13,17 +13,17 @@ if __name__ == '__main__':
         spark_session = create_session()
 
         dataset = get_dataset(
-            spark_session, "final_animedataset.csv", ",", columns_to_drop=["username", "anime_id", "my_score", "user_id", "title"])
+            spark_session,
+            "final_animedataset.csv", ",",
+            columns_to_drop=["username", "anime_id", "my_score", "user_id", "title"])
         dataset = adjust_num_columns(
             dataset, ["score", "scored_by", "rank", "popularity"])
+        dataset = dataset.dropna()
         dataset, log = adjust_string_columns(
             dataset, ["gender", "type", "source"])
         trace_log(timestamp, log)
-        dataset = dataset.dropna()
 
-        experimental_case(dataset)
-
-        dataset.show()
+        experimental_case(dataset, timestamp)
 
         spark_session.stop()
 
@@ -33,7 +33,9 @@ if __name__ == '__main__':
              'General process has ended, check results.'])
 
     except Exception as e:
+        print("An error interrupeted the script execution")
+        print(e)
         subprocess.run(
             ['notify-send',
-             "An error just happened",
-             'An error interrupeted the script execution'])
+             "An error interrupeted the script execution",
+             f'{e}'])
