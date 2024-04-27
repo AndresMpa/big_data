@@ -13,7 +13,6 @@ def create_session():
         .config("spark.driver.memory", "1g")
         .getOrCreate()
     )
-    print(spark)
 
     return spark
 
