@@ -16,6 +16,11 @@ config = {
     "dataset_dir": os.environ.get("DATASET_DIR"),
     "save": os.environ.get("SAVE_DIR"),
 
+    "spark_cores": os.environ.get("SPARK_CORES"),
+    "spark_shuffle": int(os.environ.get("SPAR_SHUFFLE")),
+    "spark_exec_memory": os.environ.get("SPARK_EXEC_MEMORY"),
+    "spark_drive_memory": os.environ.get("SPARK_DRIVE_MEMORY"),
+
     "verbose": os.environ.get("VERBOSE") == "1",
     "show_plot": os.environ.get("SHOW_PLOT") == "1",
 }
