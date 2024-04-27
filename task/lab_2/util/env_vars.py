@@ -12,7 +12,8 @@ load_dotenv(env_file)
 config = {
     "stage": os.environ.get("STAGE"),
 
-    "datasets": os.environ.get("DATASET_DIR"),
+    "dataset_percentage": float(os.environ.get("DATASET_PERCENTAGE")),
+    "dataset_dir": os.environ.get("DATASET_DIR"),
     "save": os.environ.get("SAVE_DIR"),
 
     "verbose": os.environ.get("VERBOSE") == "1",
