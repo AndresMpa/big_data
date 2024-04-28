@@ -1,50 +1,45 @@
-from pyspark.sql.functions import col, substring, when, regexp_replace, to_date
-from pyspark.sql.functions import unix_timestamp, from_unixtime
 from pyspark.sql import SparkSession
 
-import pyspark.ml.regression
-from pyspark.ml.feature import VectorAssembler, StringIndexer, OneHotEncoder
-from pyspark.ml.regression import LinearRegression, GBTRegressor, DecisionTreeRegressor
+from pyspark.ml.feature import VectorAssembler
+from pyspark.ml.regression import LinearRegression
 from pyspark.ml.evaluation import RegressionEvaluator
 
-from util.plotting import plt_regression, scatter
+from util.plotting import plt_regression, scatter, plot_roc_curve
+import matplotlib.pyplot as plt
 
 
 def experimental_case(df: SparkSession, timestamp: str):
+    # Ensamblar las características en una sola columna
     features = [col for col in df.columns]
-    features = features[:2] + features[3:] + features[2:3]
-    features = features[:3] + features[4:] + features[3:4]
-
     assembler = VectorAssembler(
-        inputCols=features[:-1], outputCol="features")
+        inputCols=features[1:], outputCol="features_vector")
     df = assembler.transform(df)
-    df.show()
 
-    lr = LinearRegression(featuresCol="features", labelCol="score")
-    trainData, testData = df.randomSplit([0.9, 0.1])
+    # Dividir los datos en conjunto de entrenamiento y prueba (por ejemplo, 70% para entrenamiento y 30% para prueba)
+    train_data, test_data = df.randomSplit([0.7, 0.3], seed=123)
 
-    model = lr.fit(trainData)
-    predictions = model.transform(testData)
+    # Inicializar el modelo de regresión lineal
+    lr = LinearRegression(featuresCol="features_vector", labelCol="score")
 
-    predctions = predictions.select("score", "prediction").toPandas()
-    print(predctions["score"])
-    print(predctions["prediction"])
+    # Entrenar el modelo con los datos de entrenamiento
+    lr_model = lr.fit(train_data)
+
+    # Hacer predicciones sobre el conjunto de prueba
+    predictions = lr_model.transform(test_data)
+
+    # Convertir los datos de predicción a un DataFrame de pandas para graficar
+    predictions_df = predictions.select("score", "prediction").toPandas()
 
     scatter(
-        [predctions["score"], predctions["prediction"]],
-        title="Actual vs Predicted values",
-        x="Score",
-        y="Prediction",
-        id=f"Scatter - {timestamp}",
+        [predictions_df["score"], predictions_df["prediction"]],
+        title=f"Predictions vs True values",
+        x="True values",
+        y="Predictions",
         s=True,
     )
 
-    plt_regression(
-        prediction=predctions["prediction"],
-        features=predctions["score"],
-        target=predctions["score"],
-        id=f"Regression - {timestamp}",
-        x="Score",
-        y="Prediction",
-        s=True,
-    )
+    # Evaluar el rendimiento del modelo utilizando la métrica de evaluación adecuada
+    evaluator = RegressionEvaluator(
+        labelCol="score", predictionCol="prediction", metricName="rmse")
+    rmse = evaluator.evaluate(predictions)
+    print("Root Mean Squared Error (RMSE) on test data = %g" % rmse)
