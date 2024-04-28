@@ -1,34 +1,41 @@
-<div align="center">
-  <b>Delivery day: April 21th</b>
-
-Task constrains can be find at <a href="./task.md">task.md</a>
-
-</div>
-
 ## Introduction
 
-### Local specs
-  - RAM
-  - Disk
-  - CPU
-  - GPU
+This project analyses [Anime Dataset 2023](https://www.kaggle.com/datasets/dbdmobile/myanimelist-dataset?select=final_animedataset.csv) from kaggle
 
-## Problem justification
+### Usage
 
-### Analysis strategy
+Create a new virtual environment using:
 
-### Procedure & Implementation
+```bash
 
-#### Database modifications
+python -m venv env
+pip install -r ./requirements.txt
+```
 
-- [Anime Dataset 2023](https://www.kaggle.com/datasets/dbdmobile/myanimelist-dataset?select=final_animedataset.csv)
+Then copy .env.example into a .env file, here's an example of usage
 
-# ### Machine learning strategy
+```bash
+STAGE=1
 
-## Results
+DATASET_PERCENTAGE=1
+DATASET_DIR="../../datasets/big_datasets/anime/"
+SAVE_DIR="plots"
 
-### Hadoop / Spark
+SPARK_CORES=4
+SPAR_SHUFFLE=1
+SPARK_EXEC_MEMORY=1
+SPARK_DRIVE_MEMORY=1
+SPARK_LOG_LEVEL="OFF"
 
-### Machine learning output 
+VERBOSE=1
+SHOW_PLOT=1
+```
 
-## Conclusions
+Available options for `SPARK_LOG_LEVEL`:
+    - "ALL"
+    - "DEBUG"
+    - "INFO"
+    - "WARN"
+    - "ERROR"
+    - "FATAL"
+    - "OFF"
