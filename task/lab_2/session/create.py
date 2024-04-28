@@ -12,7 +12,10 @@ def create_session():
         .config("spark.executor.memory", f"{config['spark_exec_memory']}g")
         .config("spark.sql.shuffle.partitions", config['spark_shuffle'])
         .config("spark.driver.memory", f"{config['spark_drive_memory']}g")
+        .config("spark.logLevel", f"{config['spark_log_level']}")
         .getOrCreate()
     )
+
+    spark.sparkContext.setLogLevel(f"{config['spark_log_level']}")
 
     return spark
