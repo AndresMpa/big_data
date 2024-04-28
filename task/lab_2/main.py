@@ -16,12 +16,14 @@ if __name__ == '__main__':
             spark_session,
             "final_animedataset.csv", ",",
             columns_to_drop=["username", "anime_id", "my_score", "user_id", "title"])
+
         dataset = adjust_num_columns(
             dataset, ["score", "scored_by", "rank", "popularity"])
-        dataset = dataset.dropna()
         dataset, log = adjust_string_columns(
-            dataset, ["gender", "type", "source"])
+            dataset, ["genre", "gender", "type", "source"])
         trace_log(timestamp, log)
+
+        dataset = dataset.dropna()
 
         experimental_case(dataset, timestamp)
 
