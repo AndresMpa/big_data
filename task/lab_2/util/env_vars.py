@@ -20,6 +20,7 @@ config = {
     "spark_shuffle": int(os.environ.get("SPAR_SHUFFLE")),
     "spark_exec_memory": os.environ.get("SPARK_EXEC_MEMORY"),
     "spark_drive_memory": os.environ.get("SPARK_DRIVE_MEMORY"),
+    "spark_log_level": os.environ.get("SPARK_LOG_LEVEL"),
 
     "verbose": os.environ.get("VERBOSE") == "1",
     "show_plot": os.environ.get("SHOW_PLOT") == "1",

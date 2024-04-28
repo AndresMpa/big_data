@@ -1,6 +1,8 @@
+import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve, auc
 
 from typing import Any, List
 from util.env_vars import config
@@ -193,6 +195,38 @@ def histogram(data: pd.Series, title: str = "Histogram plot", **kwargs) -> None:
     plt.xlabel(x_label, fontsize=14)
     plt.ylabel(y_label, fontsize=14)
     plt.title(title)
+
+    if "s" in kwargs or "save" in kwargs:
+        figure = plt.gcf()
+        save_figure(figure, f"{id} - {title}")
+
+    if config["show_plot"]:
+        plt.show()
+
+    plt.close()
+
+def plot_roc_curve(predictions_df, title: str = "Histogram plot", **kwargs) -> None:
+    fpr, tpr, thresholds = roc_curve(predictions_df["score"], predictions_df["prediction"])
+    roc_auc = auc(fpr, tpr)
+
+    id = kwargs.get("id") or kwargs.get("identifier") or ""
+    x_label = kwargs.get("x") or kwargs.get("x_label") or ""
+    y_label = kwargs.get("y") or kwargs.get("y_label") or ""
+
+
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(fpr, tpr, color='darkorange', lw=2, label='ROC curve (area = %0.2f)' % roc_auc)
+    plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.legend(loc="lower right")
+    plt.grid(True)
+
+    plt.xlabel(x_label, fontsize=14)
+    plt.ylabel(y_label, fontsize=14)
+    plt.title(title)
+
 
     if "s" in kwargs or "save" in kwargs:
         figure = plt.gcf()
