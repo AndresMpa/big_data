@@ -1,4 +1,4 @@
-from pyspark.sql.types import DoubleType
+from pyspark.sql.types import StructField, StringType, IntegerType, StructType, DoubleType
 from pyspark.ml.feature import StringIndexer
 from pyspark.sql import SparkSession
 from util.env_vars import config
@@ -18,10 +18,17 @@ def adjust_string_columns(df: SparkSession, columns_to_index: []):
     indexers = {}
 
     for column in columns_to_index:
-        # Inicializar StringIndexer
-        indexer = StringIndexer(inputCol=column, outputCol=column+"_indexed")
+        # Verificar las categorías únicas presentes en la columna
+        unique_categories = indexed_df.select(
+            column).distinct().rdd.map(lambda r: r[0]).collect()
+
+        # Inicializar StringIndexer con handleInvalid="keep"
+        indexer = StringIndexer(
+            inputCol=column, outputCol=column+"_indexed", handleInvalid="keep")
+
         # Ajustar y transformar el DataFrame
         indexed_df = indexer.fit(indexed_df).transform(indexed_df)
+
         # Almacenar el índice asociado a cada valor único en un diccionario
         indexers[column] = dict(enumerate(indexer.fit(df).labels))
 
@@ -41,9 +48,3 @@ def adjust_num_columns(df: SparkSession, columns_to_convert: []):
             column, df[column].cast(DoubleType()))
 
     return converted_df
-
-
-def drop_nan(df: SparkSession):
-    df.na.drop(how='any')
-
-    return df
